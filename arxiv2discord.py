@@ -33,6 +33,9 @@ ARXIV_PAGE_SIZE = 100          # results per API request
 ARXIV_RATE_LIMIT_SEC = 3.0     # arXiv asks for >=3 s between requests
 DISCORD_MAX_EMBEDS = 10        # Discord allows at most 10 embeds per message
 DISCORD_DESC_LIMIT = 2000      # keep abstracts well under the 4096 embed limit
+# Discord rejects a message whose embeds sum to >6000 characters. Pack messages
+# under a safe budget below that hard limit.
+DISCORD_TOTAL_CHAR_BUDGET = 5800
 DISCORD_TITLE_LIMIT = 256
 
 # Default: all six astro-ph subcategories (modern papers carry these, not the
@@ -250,11 +253,38 @@ def post_to_discord(webhook_url: str, results: list[Result],
 
     _send(webhook_url, {"content": header}, dry_run)
 
-    # Discord allows <=10 embeds per request; batch them.
-    for i in range(0, len(results), DISCORD_MAX_EMBEDS):
-        batch = results[i: i + DISCORD_MAX_EMBEDS]
-        payload = {"embeds": [build_embed(r) for r in batch]}
-        _send(webhook_url, payload, dry_run)
+    # Discord limits a message to <=10 embeds AND <=6000 chars across all of
+    # them combined. Pack greedily, respecting both constraints.
+    for batch in _pack_embeds(build_embed(r) for r in results):
+        _send(webhook_url, {"embeds": batch}, dry_run)
+
+
+def _embed_len(embed: dict) -> int:
+    """Character count Discord uses toward the 6000-per-message limit."""
+    total = len(embed.get("title", "")) + len(embed.get("description", ""))
+    total += len(embed.get("footer", {}).get("text", ""))
+    total += len(embed.get("author", {}).get("name", ""))
+    for f in embed.get("fields", []):
+        total += len(f.get("name", "")) + len(f.get("value", ""))
+    return total
+
+
+def _pack_embeds(embeds: Iterable[dict]) -> list[list[dict]]:
+    """Group embeds into messages of <=10 embeds and <=budget total chars."""
+    batches: list[list[dict]] = []
+    current: list[dict] = []
+    running = 0
+    for embed in embeds:
+        size = _embed_len(embed)
+        if current and (len(current) >= DISCORD_MAX_EMBEDS
+                        or running + size > DISCORD_TOTAL_CHAR_BUDGET):
+            batches.append(current)
+            current, running = [], 0
+        current.append(embed)
+        running += size
+    if current:
+        batches.append(current)
+    return batches
 
 
 def _send(webhook_url: str, payload: dict, dry_run: bool) -> None:
