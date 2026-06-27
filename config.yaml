@@ -1,0 +1,60 @@
+# ===========================================================================
+# arxiv2discord configuration
+# ===========================================================================
+
+# arXiv categories to monitor. Default below covers all six astro-ph
+# subcategories. Remove any you don't care about to cut noise.
+categories:
+  - astro-ph.GA   # Astrophysics of Galaxies
+  - astro-ph.CO   # Cosmology and Nongalactic Astrophysics
+  - astro-ph.EP   # Earth and Planetary Astrophysics
+  - astro-ph.HE   # High Energy Astrophysical Phenomena
+  - astro-ph.IM   # Instrumentation and Methods for Astrophysics
+  - astro-ph.SR   # Solar and Stellar Astrophysics
+
+# How many days back to look. 1 = papers submitted in the last 24 h.
+# (arXiv does not announce on weekends, so a Monday run may want days: 3.)
+days: 1
+
+# Safety cap on how many papers to pull from the API per run.
+max_results: 400
+
+# Only notify when the summed keyword score is >= this value.
+score_threshold: 0
+
+# Keyword: weight. A paper's score = sum of weights of keywords found in its
+# title + abstract (case-insensitive substring match).
+keywords:
+  circumplanetary disk: 1
+  protostellar: 1
+  protostar: 1
+  protoplanetary: 1
+  protoplanetary disk: 1
+  protoplanetary disc: 1
+  circumstellar disk: 1
+  circumstellar disc: 1
+  protoplanet: 1
+  pre-main sequence: 1
+  debris disk: 1
+  debris disc: 1
+  T Tauri: 1
+  transition disk: 1
+  transition disc: 1
+  planet formation: 1
+  radio interferometry: 1
+  sparse modeling: 1
+  regularized maximum likelihood: 1
+  SETI: 1
+  Herbig Ae: 1
+  Herbig Ae/Be: 1
+  UX Ori type: 1
+  FU Ori: 1
+  EX Ors: 1
+  EX Lupi: 1
+  young star: 1
+  dust trapping: 1
+  pebble accretion: 1
+  secular gravitational instability: 1
+  ash flow: 1
+  streamer: 1
+  denoising: 1

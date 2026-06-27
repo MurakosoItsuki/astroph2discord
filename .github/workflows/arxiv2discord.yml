@@ -1,0 +1,33 @@
+name: arxiv2discord
+
+on:
+  schedule:
+    # Runs daily. Cron is in UTC; 23:00 UTC = 08:00 JST (next day).
+    # A daily run with `days: 1` covers a disjoint 24 h window each time,
+    # so papers are not duplicated across runs.
+    - cron: "0 23 * * *"
+  workflow_dispatch:        # allow manual runs from the Actions tab
+    inputs:
+      days:
+        description: "Look back this many days"
+        required: false
+        default: "1"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run arxiv2discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python arxiv2discord.py --days "${{ github.event.inputs.days || 1 }}"
