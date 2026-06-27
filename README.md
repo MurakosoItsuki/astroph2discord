@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo-banner.svg" alt="astroph2discord" width="560">
+</p>
+
 # astroph2discord
 
 Deliver new **arXiv astro-ph** papers that match your keywords to a **Discord**

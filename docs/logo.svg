@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" role="img" xmlns="http://www.w3.org/2000/svg"><title>astroph2discord</title><desc>A white star sending a signal into a blurple chat bubble holding a paper.</desc>
+<rect x="6" y="6" width="500" height="500" rx="112" fill="#11173A" stroke="#2A325E" stroke-width="3"/>
+<circle cx="386" cy="92" r="3" fill="#FFFFFF" opacity="0.8"/>
+<circle cx="436" cy="150" r="2" fill="#FFFFFF" opacity="0.6"/>
+<circle cx="96" cy="300" r="2.5" fill="#FFFFFF" opacity="0.6"/>
+<circle cx="92" cy="120" r="2" fill="#FFFFFF" opacity="0.5"/>
+<circle cx="338" cy="436" r="2.5" fill="#FFFFFF" opacity="0.5"/>
+<circle cx="462" cy="306" r="2" fill="#FFFFFF" opacity="0.5"/>
+<circle cx="170" cy="175" r="120" fill="#5865F2" opacity="0.16"/>
+<path d="M170 85 L197 148 L260 175 L197 202 L170 265 L143 202 L80 175 L143 148 Z" fill="#F2F5FF"/>
+<circle cx="170" cy="175" r="11" fill="#FFFFFF"/>
+<circle cx="215" cy="218" r="7" fill="#7D8CFF"/>
+<circle cx="243" cy="250" r="9" fill="#6B79F5"/>
+<circle cx="268" cy="283" r="11" fill="#5865F2"/>
+<rect x="286" y="252" width="182" height="150" rx="36" fill="#5865F2"/>
+<polygon points="322,400 294,448 368,402" fill="#5865F2"/>
+<rect x="314" y="290" width="128" height="15" rx="7" fill="#FFFFFF"/>
+<rect x="314" y="318" width="128" height="15" rx="7" fill="#FFFFFF" opacity="0.92"/>
+<rect x="314" y="346" width="86" height="15" rx="7" fill="#FFFFFF" opacity="0.8"/>
+</svg>

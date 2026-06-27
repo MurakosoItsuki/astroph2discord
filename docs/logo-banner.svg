@@ -1,0 +1,25 @@
+<svg width="680" height="210" viewBox="0 0 680 210" role="img" xmlns="http://www.w3.org/2000/svg"><title>astroph2discord</title><desc>A white star sending a signal into a blurple chat bubble holding a paper, beside the wordmark astroph2discord and the tagline arXiv astro-ph to your Discord, daily.</desc>
+<rect x="8" y="8" width="664" height="194" rx="28" fill="#0E1330" stroke="#2A325E" stroke-width="2"/>
+<circle cx="612" cy="44" r="2" fill="#FFFFFF" opacity="0.6"/>
+<circle cx="640" cy="150" r="1.6" fill="#FFFFFF" opacity="0.5"/>
+<circle cx="320" cy="36" r="1.6" fill="#FFFFFF" opacity="0.5"/>
+<circle cx="560" cy="176" r="1.6" fill="#FFFFFF" opacity="0.45"/>
+<g transform="translate(40,38) scale(0.262)">
+<circle cx="170" cy="175" r="120" fill="#5865F2" opacity="0.16"/>
+<circle cx="386" cy="92" r="6" fill="#FFFFFF" opacity="0.8"/>
+<circle cx="92" cy="120" r="5" fill="#FFFFFF" opacity="0.5"/>
+<circle cx="96" cy="320" r="6" fill="#FFFFFF" opacity="0.5"/>
+<path d="M170 85 L197 148 L260 175 L197 202 L170 265 L143 202 L80 175 L143 148 Z" fill="#F2F5FF"/>
+<circle cx="170" cy="175" r="11" fill="#FFFFFF"/>
+<circle cx="215" cy="218" r="7" fill="#7D8CFF"/>
+<circle cx="243" cy="250" r="9" fill="#6B79F5"/>
+<circle cx="268" cy="283" r="11" fill="#5865F2"/>
+<rect x="286" y="252" width="182" height="150" rx="36" fill="#5865F2"/>
+<polygon points="322,400 294,448 368,402" fill="#5865F2"/>
+<rect x="314" y="290" width="128" height="15" rx="7" fill="#FFFFFF"/>
+<rect x="314" y="318" width="128" height="15" rx="7" fill="#FFFFFF" opacity="0.92"/>
+<rect x="314" y="346" width="86" height="15" rx="7" fill="#FFFFFF" opacity="0.8"/>
+</g>
+<text x="206" y="110" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="54" font-weight="800" fill="#FFFFFF">astroph<tspan fill="#8C9CFF">2</tspan>discord</text>
+<text x="208" y="148" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="22" fill="#9AA3C7">arXiv astro-ph → your Discord, daily</text>
+</svg>
