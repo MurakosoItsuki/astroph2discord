@@ -3,10 +3,9 @@
 Deliver new **arXiv astro-ph** papers that match your keywords to a **Discord**
 channel, automatically, every day — for free via GitHub Actions.
 
-## Background
+## Why astroph2discord?
 
-I used to track new astro-ph papers with a Slack notifier, but I moved my daily
-workflow to Discord. So I rebuilt the idea from scratch around the **official
+I built the idea from scratch around the **official
 arXiv API** (rather than scraping arXiv's HTML, which breaks whenever the page
 layout changes) and Discord webhooks, and added a few things I wanted —
 Japanese translation, an author watch-list, de-duplication, and detection of
@@ -77,9 +76,11 @@ The workflow in [`.github/workflows/arxiv2discord.yml`](.github/workflows/arxiv2
 runs daily (23:00 UTC = 08:00 JST). You can also trigger it manually from the
 **Actions** tab ("Run workflow"), optionally overriding the look-back days.
 
-> Note: arXiv does not announce on weekends. A daily run with `days: 1` is
-> simplest and never duplicates papers (each run covers a disjoint 24 h window).
-> If you prefer weekday-only runs, change the cron and bump `days` on Mondays.
+> Note: the scheduled run uses an overlapping look-back window (`days: 3` by
+> default) made safe by the `seen_ids.json` cache, so weekends or a skipped run
+> never cause a miss or a duplicate. Manual runs have a **Disable de-dup cache**
+> toggle (on by default) so you can re-post while testing; turn it off for
+> normal de-duplicated runs.
 
 ### 4. Run it locally (optional)
 
@@ -119,18 +120,19 @@ match in the window. Use it deliberately; the daily Action keeps `--state` on.
 | `keywords`           | `keyword: weight` map; scored against title + abstract.               |
 | `translate`          | `true` to append a Japanese translation (needs `DEEPL_API_KEY`).      |
 | `translate_lang`     | DeepL target language code (default `JA`).                            |
-| `highlight_authors`  | Authors to flag with ⭐ and bold (case-insensitive substring).         |
+| `highlight_authors`  | Authors to show in **bold** (case-insensitive substring match).       |
 | `author_bonus`       | Score added when a highlighted author appears (set ≥ threshold to     |
 |                      | guarantee your own papers always notify).                            |
 
 Each paper is posted as a full-width message: a large linked title heading
-(prefixed with a score marker 🔴/🟠/🔵, plus ⭐ for watch-listed authors and 🔄
-for revisions), then score & hit keywords, authors, categories, the arXiv
-**Comments** field (e.g. "Accepted to ApJ"), the journal reference when
-available, a direct **PDF** link, the full English abstract, and — if enabled —
-the Japanese abstract. Long papers are split across a couple of messages so the
-English abstract is always shown in full. (Discord does not allow custom body
-font sizes; headings are the only enlarged text.)
+(prefixed with 🔄 if the paper is a revision), then score & hit keywords,
+authors (watch-listed names in **bold**), categories, the arXiv **Comments**
+field (e.g. "Accepted to ApJ"), the journal reference when available, a direct
+**PDF** link, the full English abstract, and — if enabled — the Japanese
+abstract. Link previews are suppressed so they don't crowd the text. Long papers
+are split across a couple of messages so the English abstract is always shown in
+full. (Discord does not allow custom body font sizes; headings are the only
+enlarged text.)
 
 CLI flags: `--days`, `--config`, `--dry-run`, `--state-file PATH`, `--no-state`.
 
