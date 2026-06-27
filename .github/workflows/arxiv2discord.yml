@@ -12,7 +12,11 @@ on:
       days:
         description: "Look back this many days"
         required: false
-        default: "3"
+        default: "7"
+      disable_cache:
+        description: "Disable de-dup cache (notify even if already seen) — for testing"
+        type: boolean
+        default: true
 
 # Needed to commit the updated seen-id cache back to the repo.
 permissions:
@@ -40,7 +44,14 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
         run: |
-          python arxiv2discord.py --days "${{ github.event.inputs.days || 3 }}"
+          ARGS="--days ${{ github.event.inputs.days || 3 }}"
+          # Manual runs default to disabling the cache (testing). Scheduled
+          # runs leave inputs empty, so the cache stays on in production.
+          if [[ "${{ github.event.inputs.disable_cache }}" == "true" ]]; then
+            ARGS="$ARGS --no-state"
+            echo "De-dup cache DISABLED for this run (testing mode)."
+          fi
+          python arxiv2discord.py $ARGS
 
       - name: Commit updated seen-id cache
         run: |
