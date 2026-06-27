@@ -19,6 +19,14 @@ Key features:
 - Keyword scoring, author watch-list, optional **Japanese (DeepL)** translation.
 - Catches **revised papers (v2, v3, …)** and never sends duplicates.
 
+## Example
+
+A matched paper as it appears in Discord — title, score & hit keywords, authors,
+categories, the arXiv Comments field, a PDF link, and the abstract in English
+with an optional Japanese translation:
+
+![Example notification in Discord](docs/example.png)
+
 ## How it works
 
 1. Query the arXiv API for papers in your chosen `astro-ph` subcategories
