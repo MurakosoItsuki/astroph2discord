@@ -28,6 +28,11 @@ max_results: 400
 # Only notify when the summed keyword score is >= this value.
 score_threshold: 0
 
+# On days with no new matching papers, still post a one-line "no new papers
+# today" message so you can tell the tool ran (vs. silently broken).
+# Set to false if you prefer complete silence on quiet days.
+heartbeat: true
+
 # ---------------------------------------------------------------------------
 # Japanese translation (DeepL)
 # ---------------------------------------------------------------------------

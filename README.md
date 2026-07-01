@@ -117,7 +117,7 @@ down and click **Commit changes**. No tools needed — GitHub edits it in place.
 
 ### Step 6 — That's it: it now runs every day
 
-The workflow runs automatically every day (23:00 UTC = 08:00 JST) and posts only
+The workflow runs automatically every day (02:00 UTC = 11:00 JST) and posts only
 **new or revised** papers — duplicates are filtered out by the `seen_ids.json`
 cache, so you never get the same paper twice, and a skipped/failed run is
 recovered next time. To run by hand later, use **Run workflow** with **Disable
@@ -151,6 +151,7 @@ ignores the de-dup cache (handy to backfill older matches after first setup).
 | `date_field`         | `updated` (catches v2 replacements & updates) or `submitted` (v1 only).|
 | `max_results`        | Safety cap on papers pulled from the API per run.                      |
 | `score_threshold`    | Minimum summed score required to notify.                               |
+| `heartbeat`          | `true` posts a one-line "no new papers today" on quiet days.           |
 | `keywords`           | `keyword: weight` map; scored against title + abstract.               |
 | `translate`          | `true` to append a Japanese translation (needs `DEEPL_API_KEY`).      |
 | `translate_lang`     | DeepL target language code (default `JA`).                            |

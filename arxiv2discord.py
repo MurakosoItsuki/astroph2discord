@@ -109,6 +109,10 @@ def load_config(path: str | None = None) -> dict:
     config.setdefault("highlight_authors", [])
     config.setdefault("author_bonus", 0)
 
+    # Post a short "no new papers today" line on quiet days, so a silent run is
+    # never mistaken for a broken one.
+    config.setdefault("heartbeat", True)
+
     # normalise types
     config["keywords"] = {str(k): float(v) for k, v in config["keywords"].items()}
     config["score_threshold"] = float(config["score_threshold"])
@@ -466,6 +470,11 @@ def run(config_path: str | None, webhook_url: str | None,
 
     if not fresh:
         print("Nothing new to send.", file=sys.stderr)
+        if config["heartbeat"] and (dry_run or webhook_url):
+            today = dt.date.today()
+            msg = (f"🛰️ arXiv astro-ph digest — {today:%Y-%m-%d} — no new papers "
+                   f"today ({len(matches)} matched, already delivered).")
+            _send(webhook_url, {"content": msg, "flags": 4}, dry_run)
         return 0
 
     if not dry_run and not webhook_url:
