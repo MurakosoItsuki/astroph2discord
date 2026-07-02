@@ -26,7 +26,7 @@ date_field: updated
 max_results: 400
 
 # Only notify when the summed keyword score is >= this value.
-score_threshold: 0
+score_threshold: 3
 
 # On days with no new matching papers, still post a one-line "no new papers
 # today" message so you can tell the tool ran (vs. silently broken).
@@ -65,28 +65,38 @@ keywords:
   protoplanetary disc: 1
   circumstellar disk: 1
   circumstellar disc: 1
-  protoplanet: 1
-  pre-main sequence: 1
-  debris disk: 1
-  debris disc: 1
-  T Tauri: 1
-  transition disk: 1
-  transition disc: 1
-  planet formation: 1
-  radio interferometry: 1
-  sparse modeling: 1
-  regularized maximum likelihood: 1
-  SETI: 1
-  Herbig Ae: 1
-  Herbig Ae/Be: 1
-  UX Ori type: 1
-  FU Ori: 1
-  EX Ors: 1
-  EX Lupi: 1
-  young star: 1
-  dust trapping: 1
-  pebble accretion: 1
   secular gravitational instability: 1
-  ash flow: 1
-  streamer: 1
-  denoising: 1
+  Population III: 4
+  Pop III: 4
+  first star: 4
+  first stars: 4
+  metal-poor: 3
+  metal poor: 3
+  low-metallicity: 3
+  low metallicity: 3
+  extremely metal-poor: 4
+  EMP: 2
+
+  primordial: 3
+  primordial cloud: 3
+  early universe: 3
+
+  star formation: 2
+  star-forming: 2
+  protostar: 2
+  prestellar core: 2
+  molecular cloud: 1
+
+  fragmentation: 3
+  accretion disk: 1
+  magnetic field: 3
+  magnetized: 3
+  magnetohydrodynamics: 3
+  MHD: 2
+  non-ideal MHD: 4
+  turbulence: 3
+  turbulent: 2
+  turbulent dynamo: 3
+  outflow: 2
+  initial mass function: 2
+  IMF: 2
